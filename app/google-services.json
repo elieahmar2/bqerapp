@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "912894745948",
+    "project_id": "bqerzala-ae4d8",
+    "storage_bucket": "bqerzala-ae4d8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912894745948:android:d81f1c019adc9800d03599",
+        "android_client_info": {
+          "package_name": "com.bqerzala.online"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCU0nx3T21lVZdDETzgpl3eBBIxlsdL8d0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
+
