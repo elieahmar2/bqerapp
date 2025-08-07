@@ -21,21 +21,18 @@ jobs:
           distribution: 'temurin'
           java-version: 17
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v2
-        with:
-          api-level: 33
-          build-tools-version: '33.0.2'
-          ndk-version: '25.1.8937393'
-
       - name: Grant execute permission to gradlew
         run: chmod +x ./gradlew
+
+      - name: Downgrade to Gradle 8.5
+        run: |
+          sed -i 's/gradle-10.0-all.zip/gradle-8.5-all.zip/' gradle/wrapper/gradle-wrapper.properties
 
       - name: Clean Project
         run: ./gradlew clean
 
-      - name: Build with Gradle
-        run: ./gradlew assembleDebug --info
+      - name: Build with Gradle (show warnings)
+        run: ./gradlew assembleDebug --warning-mode all --info
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
