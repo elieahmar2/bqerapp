@@ -24,15 +24,11 @@ jobs:
       - name: Grant execute permission to gradlew
         run: chmod +x ./gradlew
 
-      - name: Use Gradle 8.6
-        run: |
-          sed -i 's/gradle-10.0-all.zip/gradle-8.6-all.zip/' gradle/wrapper/gradle-wrapper.properties
-
       - name: Clean Project
         run: ./gradlew clean
 
       - name: Build with Gradle
-        run: ./gradlew assembleDebug --warning-mode all --info
+        run: ./gradlew assembleDebug --info --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
