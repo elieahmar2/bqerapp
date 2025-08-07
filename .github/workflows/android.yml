@@ -25,20 +25,13 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build with Gradle
-        run: ./gradlew assembleDebug --warning-mode all || true
+        run: ./gradlew assembleDebug --warning-mode all
 
-      - name: Create hona folder
-        run: mkdir -p hona
+      - name: List APK files
+        run: ls -l app/build/outputs/apk/debug/
 
-      - name: Copy APK to hona folder
-        run: |
-          find . -name "*.apk" -exec cp {} hona/ \;
-
-      - name: List files in hona
-        run: ls -R hona
-
-      - name: Upload APKs from hona
+      - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: apk-from-hona
-          path: hona/
+          name: my-app-debug-apk
+          path: app/build/outputs/apk/debug/*.apk
