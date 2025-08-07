@@ -30,6 +30,9 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew assembleDebug --info --stacktrace
 
+      - name: Check APK file
+        run: ls -l app/build/outputs/apk/debug/
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
