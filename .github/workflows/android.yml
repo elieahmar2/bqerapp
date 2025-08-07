@@ -25,13 +25,18 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build with Gradle
-        run: ./gradlew assembleDebug --warning-mode all
+        run: ./gradlew assembleDebug --stacktrace --info --warning-mode all || true
 
-      - name: List APK files
-        run: ls -l app/build/outputs/apk/debug/
-
-      - name: Upload APK artifact
+      - name: Upload problems report if exists
         uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: my-app-debug-apk
+          name: problems-report
+          path: app/build/reports/problems/problems-report.html
+
+      - name: Upload APK if exists
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: apk
           path: app/build/outputs/apk/debug/*.apk
