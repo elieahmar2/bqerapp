@@ -24,13 +24,13 @@ jobs:
       - name: Grant execute permission to gradlew
         run: chmod +x ./gradlew
 
-      - name: Clean and Build APK
-        run: ./gradlew clean assembleDebug --stacktrace --warning-mode all
+      - name: Clean & Build Debug APK
+        run: ./gradlew clean assembleDebug
 
-      - name: List APKs (debug)
-        run: find app/build/outputs/apk/debug -name "*.apk"
+      - name: List APKs
+        run: find app/build/outputs/apk/ -name "*.apk"
 
-      - name: Upload APK artifact
+      - name: Upload APKs
         uses: actions/upload-artifact@v4
         with:
           name: debug-apk
