@@ -24,26 +24,14 @@ jobs:
       - name: Grant execute permission to gradlew
         run: chmod +x ./gradlew
 
-      - name: Run Gradle Build (Debug)
-        run: ./gradlew clean assembleDebug --stacktrace --info --warning-mode all
+      - name: Clean and Build APK
+        run: ./gradlew clean assembleDebug --stacktrace --warning-mode all
 
-      - name: Show build outputs
-        run: |
-          echo "Listing APKs..."
-          find app/build/outputs/apk -type f
-          echo "Listing problems report..."
-          find app/build/reports/problems -type f
+      - name: List APKs (debug)
+        run: find app/build/outputs/apk/debug -name "*.apk"
 
-      - name: Upload APK artifact if exists
+      - name: Upload APK artifact
         uses: actions/upload-artifact@v4
-        if: always()
         with:
-          name: apk
+          name: debug-apk
           path: app/build/outputs/apk/debug/*.apk
-
-      - name: Upload Problems Report artifact if exists
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: problems-report
-          path: app/build/reports/problems/problems-report.html
