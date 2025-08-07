@@ -27,13 +27,18 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew assembleDebug --warning-mode all || true
 
-      - name: Find APKs
-        run: |
-          echo "APK files found:"
-          find . -name "*.apk"
+      - name: Create hona folder
+        run: mkdir -p hona
 
-      - name: Upload APKs
+      - name: Copy APK to hona folder
+        run: |
+          find . -name "*.apk" -exec cp {} hona/ \;
+
+      - name: List files in hona
+        run: ls -R hona
+
+      - name: Upload APKs from hona
         uses: actions/upload-artifact@v4
         with:
-          name: built-apks
-          path: '**/*.apk'
+          name: apk-from-hona
+          path: hona/
