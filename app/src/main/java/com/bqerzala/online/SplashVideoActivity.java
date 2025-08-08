@@ -15,20 +15,14 @@ public class SplashVideoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // إنشاء VideoView برمجيًا أو يمكن تعريفه في xml
         videoView = new VideoView(this);
         setContentView(videoView);
 
-        // تعريف مسار الفيديو داخل الـ raw
-        Uri videoUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.video);
+        Uri videoUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.video1);
 
-        // تعيين مصدر الفيديو للـ VideoView
         videoView.setVideoURI(videoUri);
-
-        // تشغيل الفيديو تلقائيًا
         videoView.start();
 
-        // الاستماع لانتهاء الفيديو للانتقال إلى MainActivity
         videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
